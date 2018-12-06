@@ -201,41 +201,57 @@
 			$('#loading').addClass('d-none');
 			$('#dashboard').removeClass('d-none');
 			actResponseFlag = true;
-			$('#response').append('<br>System activated.');
+			$('#response').append('<br><b style="color:green">System activated.</b>');
+			var responseDiv = document.getElementById("response");
+			responseDiv.scrollTop = responseDiv.scrollHeight;
 		}
-		else if (message.indexOf('d@ct') > -1)
+		else if (message.indexOf('&@ct') > -1)
 		{
 			$('#loading').addClass('d-none');
 			$('#dashboard').removeClass('d-none');
 			deactResponseFlag = true;
-			$('#response').append('<br>System deactivated.');
+			$('#response').append('<br><b style="color:green">System deactivated.</b>');
+			var responseDiv = document.getElementById("response");
+			responseDiv.scrollTop = responseDiv.scrollHeight;
 		}
 		else if (message.indexOf('$t@tu$') > -1)
 		{
 			$('#loading').addClass('d-none');
 			$('#dashboard').removeClass('d-none');
 			stsResponseFlag = true;
-			$('#response').append('<br>System stastus: Active');
+			$('#response').append('<br><b style="color:green">System stastus: Active');
 			$('#response').append('<br>Sensor count: 5');
-			$('#response').append('<br>Output device count: 2');
+			$('#response').append('<br>Output device count: 2</b>');
+			var responseDiv = document.getElementById("response");
+			responseDiv.scrollTop = responseDiv.scrollHeight;
 		}
 		else if (message.indexOf('d%l%t%d') > -1)
 		{
 			$('#loading').addClass('d-none');
 			$('#dashboard').removeClass('d-none');
 			detNumResponseFlag = true;
+			//yet to add
+			var responseDiv = document.getElementById("response");
+			responseDiv.scrollTop = responseDiv.scrollHeight;
 		}
 	}
 
 	function activate()
 	{
-		$('#dashboard').addClass('d-none');
-		$('#loading').removeClass('d-none');
 		$('#response').append('<br>Sending activation command...');
-		$('#response').append('<br>Activation command sent.');
-		$('#response').append('<br>Waiting for response...');
-		var responseDiv = document.getElementById("response");
-		responseDiv.scrollTop = responseDiv.scrollHeight;
+
+		if (SMS) SMS.sendSMS(mobNo, "actsys @ct",
+		function () 
+		{ 
+			$('#login').addClass('d-none');
+			$('#loading').removeClass('d-none');
+			$('#response').append('<br>Activation command sent.');
+			$('#response').append('<br>Waiting for response...');
+		}, 
+		function () 
+		{ 
+			$('#response').append('<br><b style="color:red">Failed to sent!</b>');
+		});
 
 		setTimeout(() =>
 		{
@@ -244,6 +260,8 @@
 				$('#response').append('<br><b style="color:red">No response!</b>');
 				$('#loading').addClass('d-none');
 				$('#dashboard').removeClass('d-none');
+				var responseDiv = document.getElementById("response");
+				responseDiv.scrollTop = responseDiv.scrollHeight;
 			}
 			actResponseFlag = false;
 		}, 30000);
@@ -254,8 +272,20 @@
 		$('#dashboard').addClass('d-none');
 		$('#loading').removeClass('d-none');
 		$('#response').append('<br>Sending deactivation command...');
-		$('#response').append('<br>Deactivation command sent.');
-		$('#response').append('<br>Waiting for response...');
+
+		if (SMS) SMS.sendSMS(mobNo, "dactsys &@ct",
+		function () 
+		{ 
+			$('#login').addClass('d-none');
+			$('#loading').removeClass('d-none');
+			$('#response').append('<br>Deactivation command sent.');
+			$('#response').append('<br>Waiting for response...');
+		}, 
+		function () 
+		{ 
+			$('#response').append('<br><b style="color:red">Failed to sent!</b>');
+		});
+
 		var responseDiv = document.getElementById("response");
 		responseDiv.scrollTop = responseDiv.scrollHeight;
 
@@ -266,6 +296,8 @@
 				$('#response').append('<br><b style="color:red">No response!</b>');
 				$('#loading').addClass('d-none');
 				$('#dashboard').removeClass('d-none');
+				var responseDiv = document.getElementById("response");
+				responseDiv.scrollTop = responseDiv.scrollHeight;
 			}
 			actResponseFlag = false;
 		}, 30000);
@@ -288,6 +320,8 @@
 				$('#response').append('<br><b style="color:red">No response!</b>');
 				$('#loading').addClass('d-none');
 				$('#dashboard').removeClass('d-none');
+				var responseDiv = document.getElementById("response");
+				responseDiv.scrollTop = responseDiv.scrollHeight;
 			}
 			actResponseFlag = false;
 		}, 30000);
