@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/font-awesome.css" />
+	<link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body screen="login">
+	<div class="container">
+
+
+		<div id="loading" class="col-md-10 text-center d-none">
+			<img src="./res/loading.svg" width="60%" height="auto" />
+			<p>Please wait...</p>
+		</div>
+
+
+		<div id="settings" onclick="closeSettings()" class="d-none">
+			<ul>
+				<li onclick="loadOption(0)">Account</li>
+				<li onclick="loadOption(1)">Guide</li>
+				<li onclick="loadOption(2)">Help & feedback</li>
+				<li onclick="loadOption(3)">Logout</li>
+			</ul>
+		</div>
+
+
+		<div id="login" class="col-md-10 text-center d-none">
+			<div class="extra-gap">
+				<img src="./res/welome.png" width="100%" height="auto" />
+			</div>
+			<div class="extra-gap">
+				<p class="p-main">Welcome to Ecop</p>
+				<p class="p-sub">Please enter device SIM number and password</p>
+			</div>
+			<div class="input-field">
+				<button><i class="fa fa-mobile-alt icon"></i></button>
+				<input id="mobileNumber" class="custom-control" type="number" placeholder="Mobile Number">
+			</div>
+			<div class="input-field">
+				<button><i class="fa fa-key icon"></i></button>
+				<input id="keyInput" class="custom-control" type="password" placeholder="Password">
+			</div>
+			<div class="form-group">
+				<button id="signUpBtn" disabled="disabled" class="custom-button">Sign In</button>
+			</div>
+		</div>
+
+
+		<div id="registration" class="col-md-10 text-center d-none">
+			<div class="extra-gap">
+				<p class="p-title">Sorry no response received</p>
+				<p class="p-sub">This may be due to incorrect number/password, a network delay or insufficient balance. Please try
+					again later.</p>
+			</div>
+			<div class="form-group">
+				<button id="resumeBtn" disabled="disabled" class="custom-button">Try again?</button>
+			</div>
+		</div>
+
+
+		<div id="congratz" class="col-md-10 text-center d-none">
+			<div class="extra-gap">
+				<img src="./res/success.png" width="50%" height="auto" />
+			</div>
+			<div class="extra-gap">
+				<p class="p-title">Congratulation</p>
+				<p class="p-sub d-margin">Registration successful</p>
+			</div>
+			<div class="form-group">
+				<button id="okBtn" class="custom-button">Continue</button>
+			</div>
+		</div>
+
+
+		<div id="dashboard" class="text-center d-none">
+			<div class="header">Ecop Security<span onclick="settings()"><i class="fas fa-ellipsis-v"></i></span></div>
+			<div id="response">Welcome back.</div>
+			<div class="btnDiv">
+				<div onclick="activate()" class="card1">Activate</div>
+				<div onclick="deactivate()" class="card1">Deactivate</div>
+				<div onclick="removeNumber()" class="card1">Remove Number</div>
+				<div onclick="status()" class="card1">Status</div>
+			</div>
+		</div>
+
+
+	</div>
+</body>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<script>
+	var storage = window.localStorage;
+	var registeredFlag = 'false';
+	var smsList = new Array;
+	var mobNo = "";
+	var keyIn = "";
+
+	$(function ()
+	{
+		document.addEventListener('deviceready', initialize, false);
+
+		try
+		{
+			if (storage.getItem('registeredFlag') === null)
+			{
+				storage.setItem('registeredFlag', 'false');
+			}
+
+			registeredFlag = storage.getItem('registeredFlag');
+
+			if (registeredFlag != 'true')
+			{
+				$('#login').removeClass('d-none');
+			} else
+			{
+				mobNo = storage.getItem('deviceNumber');
+				$('#dashboard').removeClass('d-none');
+			}
+		}
+		catch (error)
+		{
+			alert(error);
+		}
+	});
+
+
+	function initialize()
+	{
+		try
+		{
+			if (!SMS) { alert('Oops something went wrong! Please close and re-open the app.'); return; }
+
+			document.addEventListener('onSMSArrive', function (e)
+			{
+				var data = e.data;
+				smsList.push(data);
+				// if(e.data.address.indexOf(mobNo)>-1)
+				if (data.body.indexOf('echo') > -1)
+				{
+					$('#loading').addClass('d-none');
+					$('#congratz').removeClass('d-none');
+					storage.setItem('registeredFlag', 'true');
+					registeredFlag = storage.getItem('registeredFlag');
+					deleteSMS(data.address);
+				}
+			});
+
+			if (SMS) SMS.startWatch(function () { }, function () { alert('Oops! failed to start'); });
+
+			if (SMS) SMS.enableIntercept(true, function () { }, function () { });
+		}
+		catch (error)
+		{
+			alert(error);
+		}
+	}
+
+	function validateCred()
+	{
+		mobNo = $('#mobileNumber').val();
+		keyIn = $('#keyInput').val();
+		if (mobNo != "" && keyIn != "")
+		{
+			$('#signUpBtn').prop('disabled', false);
+			return true;
+		}
+		$('#signUpBtn').prop('disabled', true);
+		return false;
+	}
+
+	function deleteSMS(address)
+	{
+		var filter = {
+			box: '',
+			address: address,
+		};
+
+		if (SMS) SMS.deleteSMS(filter, function (n)
+		{
+			updateStatus(n + ' sms messages deleted');
+		}, function (err)
+			{
+				updateStatus('error delete sms: ' + err);
+			});
+	}
+
+	$('#mobileNumber').keyup(function (e)
+	{
+		validateCred();
+		if (e.which === 13)
+		{
+			$('#keyInput').focus();
+		}
+	});
+
+	$('#keyInput').keyup(function (e)
+	{
+		validateCred();
+		if (e.which === 13)
+		{
+			$('#signUpBtn').focus();
+			$('#signUpBtn').click();
+		}
+	});
+
+	$('#signUpBtn').click(function ()
+	{
+		if (validateCred())
+		{
+			var formatedKey = "~*#" + keyIn.trim() + "#*~";
+
+			if (SMS) SMS.sendSMS(mobNo, formatedKey, function () { $('#login').addClass('d-none'); $('#loading').removeClass('d-none'); }, function () { alert("Error sending SMS, please check your balance or retry again."); });
+
+			setTimeout(() =>
+			{
+				if (registeredFlag != 'true')
+				{
+					$('#loading').addClass('d-none');
+					$('#registration').removeClass('d-none');
+				}
+			}, 30000);
+		}
+		else
+		{
+			$('#signUpBtn').prop('disabled', true);
+		}
+	});
+
+			// storage.setItem('registeredFlag', true);
+			// storage.setItem('deviceNumber', mobNo);
+</script>
+
+</html>

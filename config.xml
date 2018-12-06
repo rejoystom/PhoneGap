@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "com.phonegap.cryptosms"
+        version   = "1.0.0">
+
+    <name>App</name>
+
+    <description>
+        The controller app.
+    </description>
+
+    <author href="https://www.novigosolutions.com/" email="rejoys.tom@novigosolutions.com">
+        Rejoys Tom
+    </author>
+
+    <content src="index.html" />
+
+    <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.4.2" />
+    <plugin name="cordova-plugin-sms" source="npm" spec="~1.0.5" />
+
+    <platform name="android">
+        <icon src="www/res/icon/logo.png" density="ldpi" />
+        <icon src="www/res/icon/logo.png" density="mdpi" />
+        <icon src="www/res/icon/logo.png" density="hdpi" />
+        <icon src="www/res/icon/logo.png" density="xhdpi" />
+        <icon src="www/res/icon/logo.png" density="xxhdpi" />
+        <icon src="www/res/icon/logo.png" density="xxxhdpi" />
+    </platform>
+
+    <platform name="android"></platform>
+
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="exit-on-suspend" value="true" />
+    <preference name="backgroundColor" value="0xffffffff" />
+    <preference name="StatusBarBackgroundColor" value="#ffffff" />
+
+</widget>
