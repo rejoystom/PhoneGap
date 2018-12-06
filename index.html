@@ -350,7 +350,7 @@
 		{
 			var formatedKey = "~*#" + keyIn.trim() + "#*~";
 
-			if (SMS) SMS.sendSMS(mobNo, formatedKey, function () { $('#login').addClass('d-none'); $('#loading').removeClass('d-none'); }, function () { alert("Error sending SMS, please check your balance or retry again."); });
+			if (SMS) SMS.sendSMS(mobNo, formatedKey, function () { $('#login').addClass('d-none'); $('#loading').removeClass('d-none'); storage.setItem('deviceNumber', mobNo); }, function () { alert("Error sending SMS, please check your balance or retry again."); });
 
 			setTimeout(() =>
 			{
