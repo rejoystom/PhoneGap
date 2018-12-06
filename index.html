@@ -59,7 +59,7 @@
 					again later.</p>
 			</div>
 			<div class="form-group">
-				<button id="resumeBtn" disabled="disabled" class="custom-button">Try again?</button>
+				<button id="resumeBtn" class="custom-button">Try again?</button>
 			</div>
 		</div>
 
@@ -99,6 +99,10 @@
 
 <script>
 	var storage = window.localStorage;
+	var delNumResponseFlag = false;
+	var deactResponseFlag = false;
+	var stsResponseFlag = false;
+	var actResponseFlag = false;
 	var registeredFlag = 'false';
 	var smsList = new Array;
 	var mobNo = "";
@@ -141,16 +145,8 @@
 
 			document.addEventListener('onSMSArrive', function (e)
 			{
-				var data = e.data;
-				smsList.push(data);
 				// if(e.data.address.indexOf(mobNo)>-1)
-				if (data.body.indexOf('echo') > -1)
-				{
-					$('#loading').addClass('d-none');
-					$('#congratz').removeClass('d-none');
-					storage.setItem('registeredFlag', 'true');
-					registeredFlag = storage.getItem('registeredFlag');
-				}
+				commandParse(e.data.body);
 			});
 
 			if (SMS) SMS.startWatch(function () { }, function () { alert('Oops! failed to start'); });
@@ -174,6 +170,129 @@
 		}
 		$('#signUpBtn').prop('disabled', true);
 		return false;
+	}
+
+	function settings()
+	{
+		$('#settings').removeClass('d-none');
+	}
+
+
+	function closeSettings()
+	{
+		$('#settings').addClass('d-none');
+	}
+
+	function loadOption(index)
+	{
+		event.stopPropagation();
+		alert(index);
+	}
+
+	function commandParse(message)
+	{
+		if (message.indexOf('%ch0') > -1)
+		{
+			$('#loading').addClass('d-none');
+			$('#congratz').removeClass('d-none');
+			storage.setItem('registeredFlag', 'true');
+			registeredFlag = storage.getItem('registeredFlag');
+		}
+		else if (message.indexOf('@ct') > -1)
+		{
+			$('#loading').addClass('d-none');
+			$('#dashboard').removeClass('d-none');
+			actResponseFlag = true;
+			$('#response').append('<br>System activated.');
+		}
+		else if (message.indexOf('d@ct') > -1)
+		{
+			$('#loading').addClass('d-none');
+			$('#dashboard').removeClass('d-none');
+			deactResponseFlag = true;
+			$('#response').append('<br>System deactivated.');
+		}
+		else if (message.indexOf('$t@tu$') > -1)
+		{
+			$('#loading').addClass('d-none');
+			$('#dashboard').removeClass('d-none');
+			stsResponseFlag = true;
+			$('#response').append('<br>System stastus: Active');
+			$('#response').append('<br>Sensor count: 5');
+			$('#response').append('<br>Output device count: 2');
+		}
+		else if (message.indexOf('d%l%t%d') > -1)
+		{
+			$('#loading').addClass('d-none');
+			$('#dashboard').removeClass('d-none');
+			detNumResponseFlag = true;
+		}
+	}
+
+	function activate()
+	{
+		$('#dashboard').addClass('d-none');
+		$('#loading').removeClass('d-none');
+		$('#response').append('<br>Sending activation command...');
+		$('#response').append('<br>Activation command sent.');
+		$('#response').append('<br>Waiting for response...');
+		var responseDiv = document.getElementById("response");
+		responseDiv.scrollTop = responseDiv.scrollHeight;
+
+		setTimeout(() =>
+		{
+			if (actResponseFlag != true)
+			{
+				$('#response').append('<br><b style="color:red">No response!</b>');
+				$('#loading').addClass('d-none');
+				$('#dashboard').removeClass('d-none');
+			}
+			actResponseFlag = false;
+		}, 30000);
+	}
+
+	function deactivate()
+	{
+		$('#dashboard').addClass('d-none');
+		$('#loading').removeClass('d-none');
+		$('#response').append('<br>Sending deactivation command...');
+		$('#response').append('<br>Deactivation command sent.');
+		$('#response').append('<br>Waiting for response...');
+		var responseDiv = document.getElementById("response");
+		responseDiv.scrollTop = responseDiv.scrollHeight;
+
+		setTimeout(() =>
+		{
+			if (actResponseFlag != true)
+			{
+				$('#response').append('<br><b style="color:red">No response!</b>');
+				$('#loading').addClass('d-none');
+				$('#dashboard').removeClass('d-none');
+			}
+			actResponseFlag = false;
+		}, 30000);
+	}
+
+	function status()
+	{
+		$('#dashboard').addClass('d-none');
+		$('#loading').removeClass('d-none');
+		$('#response').append('<br>Sending status request...');
+		$('#response').append('<br>Status request sent.');
+		$('#response').append('<br>Waiting for response...');
+		var responseDiv = document.getElementById("response");
+		responseDiv.scrollTop = responseDiv.scrollHeight;
+
+		setTimeout(() =>
+		{
+			if (actResponseFlag != true)
+			{
+				$('#response').append('<br><b style="color:red">No response!</b>');
+				$('#loading').addClass('d-none');
+				$('#dashboard').removeClass('d-none');
+			}
+			actResponseFlag = false;
+		}, 30000);
 	}
 
 	$('#mobileNumber').keyup(function (e)
@@ -222,6 +341,14 @@
 	{
 		$('#congratz').addClass('d-none');
 		$('#dashboard').removeClass('d-none');
+	});
+
+	$('#resumeBtn').click(function ()
+	{
+		$('#registration').addClass('d-none');
+		$('#login').removeClass('d-none');
+		$('#mobileNumber').val('');
+		$('#keyInput').val('');
 	});
 
 			// storage.setItem('registeredFlag', true);
