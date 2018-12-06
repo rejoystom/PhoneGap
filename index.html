@@ -150,7 +150,6 @@
 					$('#congratz').removeClass('d-none');
 					storage.setItem('registeredFlag', 'true');
 					registeredFlag = storage.getItem('registeredFlag');
-					deleteSMS(data.address);
 				}
 			});
 
@@ -175,22 +174,6 @@
 		}
 		$('#signUpBtn').prop('disabled', true);
 		return false;
-	}
-
-	function deleteSMS(address)
-	{
-		var filter = {
-			box: '',
-			address: address,
-		};
-
-		if (SMS) SMS.deleteSMS(filter, function (n)
-		{
-			updateStatus(n + ' sms messages deleted');
-		}, function (err)
-			{
-				updateStatus('error delete sms: ' + err);
-			});
 	}
 
 	$('#mobileNumber').keyup(function (e)
@@ -233,6 +216,12 @@
 		{
 			$('#signUpBtn').prop('disabled', true);
 		}
+	});
+
+	$('#okBtn').click(function ()
+	{
+		$('#congratz').addClass('d-none');
+		$('#dashboard').removeClass('d-none');
 	});
 
 			// storage.setItem('registeredFlag', true);
