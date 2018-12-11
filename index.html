@@ -82,8 +82,10 @@
 			<div class="header">Ecop Security<span onclick="settings()"><i class="fas fa-ellipsis-v"></i></span></div>
 			<div id="response">Welcome back.</div>
 			<div class="btnDiv">
-				<div onclick="activate()" class="card1">Activate</div><div onclick="deactivate()" class="card1">Deactivate</div>
-				<div onclick="removeNumber()" class="card1">Remove Number</div><div onclick="status()" class="card1">Status</div>
+				<div onclick="activate()" class="card1">Activate</div>
+				<div onclick="deactivate()" class="card1">Deactivate</div>
+				<div onclick="removeNumber()" class="card1">Remove Number</div>
+				<div onclick="status()" class="card1">Status</div>
 			</div>
 		</div>
 
@@ -189,14 +191,14 @@
 
 	function commandParse(message)
 	{
-		if (message.indexOf('%ch0') > -1)
+		if (message.indexOf('00617574686f7269736564') > -1) //authorised
 		{
 			$('#loading').addClass('d-none');
 			$('#congratz').removeClass('d-none');
 			storage.setItem('registeredFlag', 'true');
 			registeredFlag = storage.getItem('registeredFlag');
 		}
-		else if (message.indexOf('@ct') > -1)
+		else if (message.indexOf('0000616374697661746564') > -1)//activated
 		{
 			$('#loading').addClass('d-none');
 			$('#dashboard').removeClass('d-none');
@@ -205,7 +207,7 @@
 			var responseDiv = document.getElementById("response");
 			responseDiv.scrollTop = responseDiv.scrollHeight;
 		}
-		else if (message.indexOf('&ct') > -1)
+		else if (message.indexOf('6465616374697661746564') > -1)//deactivated
 		{
 			$('#loading').addClass('d-none');
 			$('#dashboard').removeClass('d-none');
@@ -214,7 +216,7 @@
 			var responseDiv = document.getElementById("response");
 			responseDiv.scrollTop = responseDiv.scrollHeight;
 		}
-		else if (message.indexOf('$t@tu$') > -1)
+		else if (message.indexOf('737461747573') > -1)//status
 		{
 			$('#loading').addClass('d-none');
 			$('#dashboard').removeClass('d-none');
@@ -225,7 +227,7 @@
 			var responseDiv = document.getElementById("response");
 			responseDiv.scrollTop = responseDiv.scrollHeight;
 		}
-		else if (message.indexOf('d%l%t%d') > -1)
+		else if (message.indexOf('64656c657465') > -1)//delete
 		{
 			$('#loading').addClass('d-none');
 			$('#dashboard').removeClass('d-none');
@@ -240,18 +242,18 @@
 	{
 		$('#response').append('<br>Sending activation command...');
 
-		if (SMS) SMS.sendSMS(mobNo, "actsys @ct",
-		function () 
-		{ 
-			$('#dashboard').addClass('d-none');
-			$('#loading').removeClass('d-none');
-			$('#response').append('<br>Activation command sent.');
-			$('#response').append('<br>Waiting for response...');
-		}, 
-		function () 
-		{ 
-			$('#response').append('<br><b style="color:red">Failed to sent!</b>');
-		});
+		if (SMS) SMS.sendSMS(mobNo, "Activate System 0000616374697661746564",
+			function () 
+			{
+				$('#dashboard').addClass('d-none');
+				$('#loading').removeClass('d-none');
+				$('#response').append('<br>Activation command sent.');
+				$('#response').append('<br>Waiting for response...');
+			},
+			function () 
+			{
+				$('#response').append('<br><b style="color:red">Failed to sent!</b>');
+			});
 
 		setTimeout(() =>
 		{
@@ -271,25 +273,25 @@
 	{
 		$('#response').append('<br>Sending deactivation command...');
 
-		if (SMS) SMS.sendSMS(mobNo, "dactsys &ct",
-		function () 
-		{ 
-			$('#dashboard').addClass('d-none');
-			$('#loading').removeClass('d-none');
-			$('#response').append('<br>Deactivation command sent.');
-			$('#response').append('<br>Waiting for response...');
-		}, 
-		function () 
-		{ 
-			$('#response').append('<br><b style="color:red">Failed to sent!</b>');
-		});
+		if (SMS) SMS.sendSMS(mobNo, "Deactivate System 6465616374697661746564",
+			function () 
+			{
+				$('#dashboard').addClass('d-none');
+				$('#loading').removeClass('d-none');
+				$('#response').append('<br>Deactivation command sent.');
+				$('#response').append('<br>Waiting for response...');
+			},
+			function () 
+			{
+				$('#response').append('<br><b style="color:red">Failed to sent!</b>');
+			});
 
 		var responseDiv = document.getElementById("response");
 		responseDiv.scrollTop = responseDiv.scrollHeight;
 
 		setTimeout(() =>
 		{
-			if (actResponseFlag != true)
+			if (deactResponseFlag != true)
 			{
 				$('#response').append('<br><b style="color:red">No response!</b>');
 				$('#loading').addClass('d-none');
@@ -297,7 +299,41 @@
 				var responseDiv = document.getElementById("response");
 				responseDiv.scrollTop = responseDiv.scrollHeight;
 			}
-			actResponseFlag = false;
+			deactResponseFlag = false;
+		}, 30000);
+	}
+
+	function removeNumber()
+	{
+		$('#response').append('<br>Sending request...');
+
+		if (SMS) SMS.sendSMS(mobNo, "Remove 9747098229 64656c657465",
+			function () 
+			{
+				$('#dashboard').addClass('d-none');
+				$('#loading').removeClass('d-none');
+				$('#response').append('<br>Request sent.');
+				$('#response').append('<br>Waiting for response...');
+			},
+			function () 
+			{
+				$('#response').append('<br><b style="color:red">Failed to sent!</b>');
+			});
+
+		var responseDiv = document.getElementById("response");
+		responseDiv.scrollTop = responseDiv.scrollHeight;
+
+		setTimeout(() =>
+		{
+			if (delNumResponseFlag != true)
+			{
+				$('#response').append('<br><b style="color:red">No response!</b>');
+				$('#loading').addClass('d-none');
+				$('#dashboard').removeClass('d-none');
+				var responseDiv = document.getElementById("response");
+				responseDiv.scrollTop = responseDiv.scrollHeight;
+			}
+			delNumResponseFlag = false;
 		}, 30000);
 	}
 
@@ -306,14 +342,26 @@
 		$('#dashboard').addClass('d-none');
 		$('#loading').removeClass('d-none');
 		$('#response').append('<br>Sending status request...');
-		$('#response').append('<br>Status request sent.');
-		$('#response').append('<br>Waiting for response...');
+
+		if (SMS) SMS.sendSMS(mobNo, "Status 737461747573",
+			function () 
+			{
+				$('#dashboard').addClass('d-none');
+				$('#loading').removeClass('d-none');
+				$('#response').append('<br>Status request sent.');
+				$('#response').append('<br>Waiting for response...');
+			},
+			function () 
+			{
+				$('#response').append('<br><b style="color:red">Failed to sent!</b>');
+			});
+
 		var responseDiv = document.getElementById("response");
 		responseDiv.scrollTop = responseDiv.scrollHeight;
 
 		setTimeout(() =>
 		{
-			if (actResponseFlag != true)
+			if (stsResponseFlag != true)
 			{
 				$('#response').append('<br><b style="color:red">No response!</b>');
 				$('#loading').addClass('d-none');
@@ -321,7 +369,7 @@
 				var responseDiv = document.getElementById("response");
 				responseDiv.scrollTop = responseDiv.scrollHeight;
 			}
-			actResponseFlag = false;
+			stsResponseFlag = false;
 		}, 30000);
 	}
 
