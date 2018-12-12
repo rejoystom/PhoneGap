@@ -131,7 +131,7 @@ function commandParse(message)
 		$('#loading').addClass('d-none');
 		$('#dashboard').removeClass('d-none');
 		detNumResponseFlag = true;
-		//yet to add
+		$('#response').append('<br><b style="color:green">Removed requested numbers</b>');
 		var responseDiv = document.getElementById("response");
 		responseDiv.scrollTop = responseDiv.scrollHeight;
 	}
