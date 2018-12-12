@@ -6,87 +6,11 @@
 	<meta name="format-detection" content="telephone=no" />
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" href="css/font-awesome.css" />
 	<link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body screen="login">
 	<div class="container">
-
-
-		<div id="loading" class="col-md-10 text-center d-none">
-			<img src="./res/loading.svg" width="60%" height="auto" />
-			<p>Please wait...</p>
-		</div>
-
-
-		<div id="settings" onclick="closeSettings()" class="d-none">
-			<ul>
-				<li onclick="loadOption(0)">Account</li>
-				<li onclick="loadOption(1)">Guide</li>
-				<li onclick="loadOption(2)">Help & feedback</li>
-				<li onclick="loadOption(3)">Logout</li>
-			</ul>
-		</div>
-
-
-		<div id="login" class="col-md-10 text-center d-none">
-			<div class="extra-gap">
-				<img src="./res/welome.png" width="100%" height="auto" />
-			</div>
-			<div class="extra-gap">
-				<p class="p-main">Welcome to Ecop</p>
-				<p class="p-sub">Please enter device SIM number and password</p>
-			</div>
-			<div class="input-field">
-				<button><i class="fa fa-mobile-alt icon"></i></button>
-				<input id="mobileNumber" class="custom-control" type="number" placeholder="Mobile Number">
-			</div>
-			<div class="input-field">
-				<button><i class="fa fa-key icon"></i></button>
-				<input id="keyInput" class="custom-control" type="password" placeholder="Password">
-			</div>
-			<div class="form-group">
-				<button id="signUpBtn" disabled="disabled" class="custom-button">Sign In</button>
-			</div>
-		</div>
-
-
-		<div id="registration" class="col-md-10 text-center d-none">
-			<div class="extra-gap">
-				<p class="p-title">Sorry no response received</p>
-				<p class="p-sub">This may be due to incorrect number/password, a network delay or insufficient balance. Please try
-					again later.</p>
-			</div>
-			<div class="form-group">
-				<button id="resumeBtn" class="custom-button">Try again?</button>
-			</div>
-		</div>
-
-
-		<div id="congratz" class="col-md-10 text-center d-none">
-			<div class="extra-gap">
-				<img src="./res/success.png" width="50%" height="auto" />
-			</div>
-			<div class="extra-gap">
-				<p class="p-title">Congratulation</p>
-				<p class="p-sub d-margin">Registration successful</p>
-			</div>
-			<div class="form-group">
-				<button id="okBtn" class="custom-button">Continue</button>
-			</div>
-		</div>
-
-
-		<div id="dashboard" class="text-center d-none">
-			<div class="header">Ecop Security<span onclick="settings()"><i class="fas fa-ellipsis-v"></i></span></div>
-			<div id="response">Welcome back.</div>
-			<div class="btnDiv">
-				<div onclick="activate()" class="card1">Activate</div><div onclick="deactivate()" class="card1">Deactivate</div>
-				<div onclick="removeNumber()" class="card1">Remove Number</div><div onclick="status()" class="card1">Status</div>
-			</div>
-		</div>
-
 	</div>
 </body>
 
