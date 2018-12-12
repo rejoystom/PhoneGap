@@ -141,7 +141,7 @@ function activate()
 {
 	$('#response').append('<br>Sending activation command...');
 
-	if (SMS) SMS.sendSMS(mobNo, "Activate System 0000616374697661746564",
+	if (SMS) SMS.sendSMS(mobNo, "#ACTSYS#",
 		function () 
 		{
 			$('#dashboard').addClass('d-none');
@@ -172,7 +172,7 @@ function deactivate()
 {
 	$('#response').append('<br>Sending deactivation command...');
 
-	if (SMS) SMS.sendSMS(mobNo, "Deactivate System 6465616374697661746564",
+	if (SMS) SMS.sendSMS(mobNo, "@DATSYS@",
 		function () 
 		{
 			$('#dashboard').addClass('d-none');
@@ -206,7 +206,7 @@ function removeNumber()
 {
 	$('#response').append('<br>Sending request...');
 
-	if (SMS) SMS.sendSMS(mobNo, "Remove 9747098229 64656c657465",
+	if (SMS) SMS.sendSMS(mobNo, "&DETSYS*9747098229*7892954080*",
 		function () 
 		{
 			$('#dashboard').addClass('d-none');
@@ -242,7 +242,7 @@ function status()
 	$('#loading').removeClass('d-none');
 	$('#response').append('<br>Sending status request...');
 
-	if (SMS) SMS.sendSMS(mobNo, "Status 737461747573",
+	if (SMS) SMS.sendSMS(mobNo, "%STSSYS%",
 		function () 
 		{
 			$('#dashboard').addClass('d-none');
