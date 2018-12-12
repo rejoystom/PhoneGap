@@ -5,7 +5,7 @@
         id        = "com.phonegap.cryptosms"
         version   = "1.0.0">
 
-    <name>App</name>
+    <name>Test</name>
 
     <description>
         The controller app.
