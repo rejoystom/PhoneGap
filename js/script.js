@@ -1,39 +1,6 @@
-var storage = window.localStorage;
-var delNumResponseFlag = false;
-var deactResponseFlag = false;
-var stsResponseFlag = false;
-var actResponseFlag = false;
-var registeredFlag = 'false';
-var smsList = new Array;
-var mobNo = "";
-var keyIn = "";
-
 $(function ()
 {
 	document.addEventListener('deviceready', initialize, false);
-
-	try
-	{
-		if (storage.getItem('registeredFlag') === null)
-		{
-			storage.setItem('registeredFlag', 'false');
-		}
-
-		registeredFlag = storage.getItem('registeredFlag');
-
-		if (registeredFlag != 'true')
-		{
-			$('#login').removeClass('d-none');
-		} else
-		{
-			mobNo = storage.getItem('deviceNumber');
-			$('#dashboard').removeClass('d-none');
-		}
-	}
-	catch (error)
-	{
-		alert(error);
-	}
 });
 
 
