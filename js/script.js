@@ -90,6 +90,12 @@ function loadOption(index)
 			$('#dashboard').addClass('d-none');
 			$('#settings').addClass('d-none');
 			$('#loading').removeClass('d-none');
+			setTimeout(() =>
+			{
+				$('#loading').addClass('d-none');
+				$('#dashboard').removeClass('d-none');
+				alert("Sorry! Try again");
+			}, 30000);
 			break;
 		case 2:
 			alert("Coming soon!");
