@@ -84,7 +84,34 @@ function closeSettings()
 function loadOption(index)
 {
 	event.stopPropagation();
-	//alert(index);
+	switch (index)
+	{
+		case 1:
+			$('#dashboard').addClass('d-none');
+			$('#settings').addClass('d-none');
+			$('#loading').removeClass('d-none');
+			break;
+		case 2:
+			alert("Coming soon!");
+			$('#settings').addClass('d-none');
+			break;
+		case 3:
+			alert("Email us at ecop@franstonerobotics.com");
+			$('#settings').addClass('d-none');
+			break;
+		case 4:
+			if (confirm("Do you want to logout?"))
+			{
+				storage.clear();
+				$('#dashboard').addClass('d-none');
+				$('#settings').addClass('d-none');
+				$('#login').removeClass('d-none');
+			}
+			$('#settings').addClass('d-none');
+			break;
+		default:
+			break;
+	}
 }
 
 function commandParse(message)
