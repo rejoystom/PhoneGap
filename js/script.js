@@ -84,7 +84,7 @@ function closeSettings()
 function loadOption(index)
 {
 	event.stopPropagation();
-	alert(index);
+	//alert(index);
 }
 
 function commandParse(message)
