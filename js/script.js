@@ -95,7 +95,7 @@ function loadOption(index)
 				$('#loading').addClass('d-none');
 				$('#dashboard').removeClass('d-none');
 				alert("Sorry! Try again");
-			}, 30000);
+			}, 3000);
 			break;
 		case 2:
 			alert("Coming soon!");
