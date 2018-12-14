@@ -123,7 +123,7 @@ function loadOption(index)
 function commandParse(message)
 {
 	// if (message.indexOf('00617574686f7269736564') > -1) //authorised
-	if (message.indexOf('1234') > -1)
+	if (message.indexOf('00617574686f7269736564') > -1)
 	{
 		$('#loading').addClass('d-none');
 		$('#congratz').removeClass('d-none');
