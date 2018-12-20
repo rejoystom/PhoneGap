@@ -20,9 +20,38 @@
 		</div>
 
 
+		<div id="tour" class="col-md-10 text-center">
+			<div id="tourCarousel" class="carousel slide">
+				<ol class="carousel-indicators">
+					<li data-target="#tourCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#tourCarousel" data-slide-to="1"></li>
+					<li data-target="#tourCarousel" data-slide-to="2"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item active">
+						<img src="http://hdphonewallpapers.com/content/ncpI4YzlBSsjPbXyNfMlKeAnPNZ1FJrVWtVbfG6Gdwh5Nja14haPmf4IcC2p99g1.png"
+						 alt="Los Angeles" style="width:100%;">
+					</div>
+					<div class="item">
+						<img src="https://i.pinimg.com/originals/61/0f/01/610f01dba9e195b9fba10abec1b0fa88.jpg" alt="Chicago" style="width:100%;">
+					</div>
+					<div class="item">
+						<img src="http://papers.co/wallpaper/papers.co-bb08-minimal-drawing-pink-illustration-art-33-iphone6-wallpaper.jpg"
+						 alt="New york" style="width:100%;">
+					</div>
+					<div class="item">
+						<img src="https://i.pinimg.com/originals/91/58/d9/9158d9e934e18ab6d8ebf67d61233c37.jpg" alt="New york" style="width:100%;">
+					</div>
+				</div>
+			</div>
+			<a class="goto-prev" data-slide="prev" href="#tourCarousel" />
+			<a class="goto-next" data-slide="next" href="#tourCarousel" />
+		</div>
+
+
 		<div id="settings" onclick="closeSettings()" class="d-none">
 			<ul>
-				<li onclick="loadOption(1)">Account</li>
+				<li onclick="loadOption(1)">Accounts</li>
 				<li onclick="loadOption(2)">Guide</li>
 				<li onclick="loadOption(3)">Help & feedback</li>
 				<li onclick="loadOption(4)">Logout</li>
@@ -82,8 +111,10 @@
 			<div class="header">Ecop Security<span onclick="settings()"><i class="fas fa-ellipsis-v"></i></span></div>
 			<div id="response">Welcome back.</div>
 			<div class="btnDiv">
-				<div onclick="activate()" class="card1">Activate</div><div onclick="deactivate()" class="card1">Deactivate</div>
-				<div onclick="removeNumber()" class="card1">Remove Number</div><div onclick="status()" class="card1">Status</div>
+				<div onclick="activate()" class="card1">Activate</div>
+				<div onclick="deactivate()" class="card1">Deactivate</div>
+				<div onclick="removeNumber()" class="card1">Remove Number</div>
+				<div onclick="status()" class="card1">Status</div>
 			</div>
 		</div>
 

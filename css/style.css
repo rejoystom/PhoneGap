@@ -114,6 +114,24 @@ html {
     font-weight:500;
 }
 
+.goto-prev{
+	height: 100% !important;
+	width: 50% !important;
+	background-color: rgba(255, 1, 1, 0.5);
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.goto-next {
+	height: 100% !important;
+	width: 50% !important;
+	background-color: rgba(0, 171, 255, 0.5);
+	position: fixed;
+	top: 0;
+	right: 0;
+}
+
 .card1 {
     width: 48%;
     margin: 1% 1%;
