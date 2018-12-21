@@ -11,47 +11,80 @@
 
 <body screen="login">
 	<div data-role="page" id="first-page">
-		<div data-role="header" data-position="fixed" data-theme="b">
-			<h1>First page</h1>
+		<div data-role="header">
+			<h1>First page header</h1>
 		</div>
+		<!-- /header -->
+
 		<div role="main" class="ui-content">
-			<p>Toward the end of the year 1920 the Government of the United States had
-				practically completed the programme, adopted during the last months of
-				President Winthrop's administration. The country was apparently tranquil.
-				Everybody knows how the Tariff and Labour questions were settled.</a></p>
-			<p>By default, buttons are block elements, but we can make them inline with data-inline="true": <a data-role="button"
-				 data-inline="true" href="#second-page">Also goes to second page</a></p>
-			<p>The war
-				with Germany, incident on that country's seizure of the Samoan Islands,
-				had left no visible scars upon the republic, and the temporary occupation
-				of Norfolk by the invading army had been forgotten in the joy over
-				repeated naval victories, and the subsequent ridiculous plight of General
-				Von Gartenlaube's forces in the State of New Jersey.<a data-role="button" data-inline="true" data-icon="arrow-r"
-				 href="#second-page">Another
-					one goes to second page</a></p>
+			<p>A header can be added to a page by adding a div with a data-role="header".</p>
+			<p>Notice how the header scrolls with your content. You can change this by adding the data-position="fixed" to your
+				header.</p>
+			<p>Similarly, a footer can be created by adding a div with data-role="footer". In this page it already has the
+				data-position="fixed" so it does not scroll out of view.</p>
+			<p>View internal page called <a href="#second-page">Second</a></p>
+			<p></p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras consequat non ipsum in convallis. Nulla vel purus
+				quis diam malesuada tristique non in augue. Vestibulum et turpis et mi laoreet gravida. In dui erat, egestas vel
+				sapien tincidunt, gravida
+				luctus sem. Pellentesque libero neque, tincidunt at sapien nec, luctus rhoncus neque. Nulla aliquam commodo
+				sollicitudin. Maecenas dapibus sem tortor, quis tempor nulla commodo ut. Quisque et mattis tortor. Cras mollis
+				interdum lacus, venenatis cursus
+				enim finibus at. Maecenas felis diam, vulputate id consectetur vel, sagittis sit amet orci. Fusce a purus eget diam
+				mollis auctor. Duis auctor posuere tincidunt. Donec facilisis tortor in turpis interdum tincidunt.
+			</p>
 		</div>
-		<div data-role="footer" data-position="fixed" data-theme="b">
+		<!-- /content -->
+
+		<div data-role="footer" data-position="fixed">
 			<h4>Page Footer</h4>
 		</div>
+		<!-- /footer -->
 	</div>
+	<!-- /page -->
 
+	<!-- Start of second page -->
 	<div data-role="page" id="second-page">
-		<div data-role="header" data-position="fixed" data-theme="b">
-			<h1>Second page</h1>
+		<div data-role="header">
+			<h1>Second page header</h1>
 		</div>
-		<div role="main" class="ui-content">
-			<p>I had walked down that day from Dr. Archer's house on Madison Avenue,
-				where I had been as a mere formality. Ever since that fall from my horse,
-				four years before, I had been troubled at times with pains in the back of
-				my head and neck, but now for months they had been absent, and the doctor
-				sent me away that day saying there was nothing more to be cured in me. It
-				was hardly worth his fee to be told that; I knew it myself.</p>
-			<p><a data-role="button" data-icon="arrow-l" data-inline="true" href="#first-page">Go back</a></p>
-		</div>
+		<!-- /header -->
 
-		<div data-role="footer" data-position="fixed" data-theme="b">
+		<div role="main" class="ui-content">
+			<p>I'm the second in the source order so I'm hidden when the page loads. I'm just shown if a link that references my
+				id is beeing clicked.</p>
+			<p><a href="#first-page">Back to First</a></p>
+			<p><a href="#third-page">Forward to Third</a></p>
+		</div>
+		<!-- /content -->
+
+		<div data-role="footer">
 			<h4>Page Footer</h4>
 		</div>
+		<!-- /footer -->
+	</div>
+	<!-- /page -->
+
+
+	<!-- Start of third page -->
+	<div data-role="page" id="third-page">
+		<div data-role="header">
+			<h1>Third page header</h1>
+		</div>
+		<!-- /header -->
+
+		<div role="main" class="ui-content">
+			<p>I'm the third in the source order so I'm hidden when the page loads. I'm just shown if a link that references my
+				id is beeing clicked.</p>
+			<p><a href="#first-page">Back to First</a></p>
+			<p><a href="#second-page">Back to Second</a></p>
+		</div>
+		<!-- /content -->
+
+		<div data-role="footer">
+			<h4>Page Footer</h4>
+		</div>
+		<!-- /footer -->
 	</div>
 
 </body>
