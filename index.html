@@ -3,77 +3,53 @@
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" href="css/font-awesome.min.css" />
 	<link rel="stylesheet" href="css/jquery.mobile.min.css" />
 	<link rel="stylesheet" href="css/style.css" />
+
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mobile.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
 </head>
 
 <body screen="login">
+	<!-- Start of first page -->
 	<div data-role="page" id="first-page">
-		<div data-role="header">
-			<h1>First page header</h1>
-		</div>
-		<!-- /header -->
-
 		<div role="main" class="ui-content">
-			<p>A header can be added to a page by adding a div with a data-role="header".</p>
-			<p>Notice how the header scrolls with your content. You can change this by adding the data-position="fixed" to your
-				header.</p>
-			<p>Similarly, a footer can be created by adding a div with data-role="footer". In this page it already has the
-				data-position="fixed" so it does not scroll out of view.</p>
-			<p>View internal page called <a href="#second-page">Second</a></p>
-			<p></p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras consequat non ipsum in convallis. Nulla vel purus
-				quis diam malesuada tristique non in augue. Vestibulum et turpis et mi laoreet gravida. In dui erat, egestas vel
-				sapien tincidunt, gravida
-				luctus sem. Pellentesque libero neque, tincidunt at sapien nec, luctus rhoncus neque. Nulla aliquam commodo
-				sollicitudin. Maecenas dapibus sem tortor, quis tempor nulla commodo ut. Quisque et mattis tortor. Cras mollis
-				interdum lacus, venenatis cursus
-				enim finibus at. Maecenas felis diam, vulputate id consectetur vel, sagittis sit amet orci. Fusce a purus eget diam
-				mollis auctor. Duis auctor posuere tincidunt. Donec facilisis tortor in turpis interdum tincidunt.
+			<h1>Pages</h1>
+			<h2>Page 1</h2>
+			<p>jQuery Mobile is built around the concept of pages: units of content and navigation.
 			</p>
+			<p>Pages are defined by adding the "data-role" attribute to a div and defining an id. Inside a page we can have
+				different types of elements, but the main content goes into a div with a "class" of "ui-content"</p>
+			<p>We can allow users to navigate through pages simply by inserting a link to the id of the page</p>
+			<p>View internal page called <a href="#second-page">Second</a></p>
 		</div>
 		<!-- /content -->
-
-		<div data-role="footer" data-position="fixed">
-			<h4>Page Footer</h4>
-		</div>
-		<!-- /footer -->
 	</div>
 	<!-- /page -->
 
+
 	<!-- Start of second page -->
 	<div data-role="page" id="second-page">
-		<div data-role="header">
-			<h1>Second page header</h1>
-		</div>
-		<!-- /header -->
-
 		<div role="main" class="ui-content">
+			<h1>Pages</h1>
+			<h2>Page 2</h2>
 			<p>I'm the second in the source order so I'm hidden when the page loads. I'm just shown if a link that references my
 				id is beeing clicked.</p>
 			<p><a href="#first-page">Back to First</a></p>
 			<p><a href="#third-page">Forward to Third</a></p>
 		</div>
 		<!-- /content -->
-
-		<div data-role="footer">
-			<h4>Page Footer</h4>
-		</div>
-		<!-- /footer -->
 	</div>
 	<!-- /page -->
 
 
 	<!-- Start of third page -->
 	<div data-role="page" id="third-page">
-		<div data-role="header">
-			<h1>Third page header</h1>
-		</div>
-		<!-- /header -->
-
 		<div role="main" class="ui-content">
+			<h1>Pages</h1>
+			<h2>Page 3</h2>
 			<p>I'm the third in the source order so I'm hidden when the page loads. I'm just shown if a link that references my
 				id is beeing clicked.</p>
 			<p><a href="#first-page">Back to First</a></p>
@@ -81,18 +57,8 @@
 		</div>
 		<!-- /content -->
 
-		<div data-role="footer">
-			<h4>Page Footer</h4>
-		</div>
-		<!-- /footer -->
 	</div>
-
+	<!-- /page -->
 </body>
-
-<script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.mobile.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
 
 </html>
