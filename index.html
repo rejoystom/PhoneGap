@@ -7,90 +7,53 @@
 	<meta name="msapplication-tap-highlight" content="no" />
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 	<link rel="stylesheet" href="css/jquery.mobile.min.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+	 crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css">
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery.mobile.min.js"></script>
 </head>
 
 <body>
-
-	<!-- Start of first page -->
-	<div data-role="page" id="first-page">
-		<div data-role="header">
-			<h1>First page header</h1>
+	<div data-role="page" id="login">
+		<div data-role="main">
+			<ul id="list">
+				<li>
+					<img src="http://hdphonewallpapers.com/content/ncpI4YzlBSsjPbXyNfMlKeAnPNZ1FJrVWtVbfG6Gdwh5Nja14haPmf4IcC2p99g1.png"
+					 style="width:100%;">
+				</li>
+				<li class="d-none">
+					<img src="https://i.pinimg.com/originals/61/0f/01/610f01dba9e195b9fba10abec1b0fa88.jpg" style="width:100%;">
+				</li>
+				<li class="d-none">
+					<img src="http://papers.co/wallpaper/papers.co-bb08-minimal-drawing-pink-illustration-art-33-iphone6-wallpaper.jpg"
+					 style="width:100%;">
+				</li>
+				<li class="d-none">
+					<img src="https://i.pinimg.com/originals/91/58/d9/9158d9e934e18ab6d8ebf67d61233c37.jpg" style="width:100%;">
+				</li>
+			</ul>
 		</div>
-		<!-- /header -->
-
-		<div role="main" class="ui-content">
-			<p>A header can be added to a page by adding a div with a data-role="header".</p>
-			<p>Notice how the header scrolls with your content. You can change this by adding the data-position="fixed" to your
-				header.</p>
-			<p>Similarly, a footer can be created by adding a div with data-role="footer". In this page it already has the
-				data-position="fixed" so it does not scroll out of view.</p>
-			<p>View internal page called <a href="#second-page">Second</a></p>
-			<p></p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras consequat non ipsum in convallis. Nulla vel purus
-				quis diam malesuada tristique non in augue. Vestibulum et turpis et mi laoreet gravida. In dui erat, egestas vel
-				sapien tincidunt, gravida
-				luctus sem. Pellentesque libero neque, tincidunt at sapien nec, luctus rhoncus neque. Nulla aliquam commodo
-				sollicitudin. Maecenas dapibus sem tortor, quis tempor nulla commodo ut. Quisque et mattis tortor. Cras mollis
-				interdum lacus, venenatis cursus
-				enim finibus at. Maecenas felis diam, vulputate id consectetur vel, sagittis sit amet orci. Fusce a purus eget diam
-				mollis auctor. Duis auctor posuere tincidunt. Donec facilisis tortor in turpis interdum tincidunt.
-			</p>
+		<div class="slide-indicator">
+			<span><i class="fas fa-circle"></i></span>
+			<span><i class="far fa-circle"></i></span>
+			<span><i class="far fa-circle"></i></span>
+			<span><i class="far fa-circle"></i></span>
+			<span><i class="far fa-circle"></i></span>
 		</div>
-		<!-- /content -->
-
-		<div data-role="footer" data-position="fixed">
-			<h4>Page Footer</h4>
-		</div>
-		<!-- /footer -->
+		<a class="goto-prev" data-slide="prev" href="#tourCarousel" />
+		<a class="goto-next" data-slide="next" href="#tourCarousel" />
 	</div>
-	<!-- /page -->
-
-	<!-- Start of second page -->
-	<div data-role="page" id="second-page">
-		<div data-role="header">
-			<h1>Second page header</h1>
-		</div>
-		<!-- /header -->
-
-		<div role="main" class="ui-content">
-			<p>I'm the second in the source order so I'm hidden when the page loads. I'm just shown if a link that references my
-				id is beeing clicked.</p>
-			<p><a href="#first-page">Back to First</a></p>
-			<p><a href="#third-page">Forward to Third</a></p>
-		</div>
-		<!-- /content -->
-
-		<div data-role="footer">
-			<h4>Page Footer</h4>
-		</div>
-		<!-- /footer -->
-	</div>
-	<!-- /page -->
-
-
-	<!-- Start of third page -->
-	<div data-role="page" id="third-page">
-		<div data-role="header">
-			<h1>Third page header</h1>
-		</div>
-		<!-- /header -->
-
-		<div role="main" class="ui-content">
-			<p>I'm the third in the source order so I'm hidden when the page loads. I'm just shown if a link that references my
-				id is beeing clicked.</p>
-			<p><a href="#first-page">Back to First</a></p>
-			<p><a href="#second-page">Back to Second</a></p>
-		</div>
-		<!-- /content -->
-
-		<div data-role="footer">
-			<h4>Page Footer</h4>
-		</div>
-		<!-- /footer -->
-	</div>
-	<!-- /page -->
 </body>
+
+<script>
+	$(function ()
+	{
+		$(document).on("swipeleft swiperight", "#list li", function (event)
+		{
+			console.log(event.type);
+		});
+	});
+</script>
 
 </html>
