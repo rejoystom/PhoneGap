@@ -12,53 +12,42 @@
 	<script type="text/javascript" src="js/script.js"></script>
 </head>
 
-<body screen="login">
-	<!-- Start of first page -->
-	<div data-role="page" id="first-page">
-		<div role="main" class="ui-content">
-			<h1>Pages</h1>
-			<h2>Page 1</h2>
-			<p>jQuery Mobile is built around the concept of pages: units of content and navigation.
-			</p>
-			<p>Pages are defined by adding the "data-role" attribute to a div and defining an id. Inside a page we can have
-				different types of elements, but the main content goes into a div with a "class" of "ui-content"</p>
-			<p>We can allow users to navigate through pages simply by inserting a link to the id of the page</p>
-			<p>View internal page called <a href="#second-page">Second</a></p>
-		</div>
-		<!-- /content -->
-	</div>
-	<!-- /page -->
+<body>
 
+	<!-- Start of first page -->
+	<div data-role="page" id="foo">
+
+		<div data-role="header">
+			<h1>Foo</h1>
+		</div><!-- /header -->
+
+		<div role="main" class="ui-content">
+			<p>I'm first in the source order so I'm shown as the page.</p>
+			<p>View internal page called <a href="#bar">bar</a></p>
+		</div><!-- /content -->
+
+		<div data-role="footer">
+			<h4>Page Footer</h4>
+		</div><!-- /footer -->
+	</div><!-- /page -->
 
 	<!-- Start of second page -->
-	<div data-role="page" id="second-page">
+	<div data-role="page" id="bar">
+
+		<div data-role="header">
+			<h1>Bar</h1>
+		</div><!-- /header -->
+
 		<div role="main" class="ui-content">
-			<h1>Pages</h1>
-			<h2>Page 2</h2>
 			<p>I'm the second in the source order so I'm hidden when the page loads. I'm just shown if a link that references my
 				id is beeing clicked.</p>
-			<p><a href="#first-page">Back to First</a></p>
-			<p><a href="#third-page">Forward to Third</a></p>
-		</div>
-		<!-- /content -->
-	</div>
-	<!-- /page -->
+			<p><a href="#foo">Back to foo</a></p>
+		</div><!-- /content -->
 
-
-	<!-- Start of third page -->
-	<div data-role="page" id="third-page">
-		<div role="main" class="ui-content">
-			<h1>Pages</h1>
-			<h2>Page 3</h2>
-			<p>I'm the third in the source order so I'm hidden when the page loads. I'm just shown if a link that references my
-				id is beeing clicked.</p>
-			<p><a href="#first-page">Back to First</a></p>
-			<p><a href="#second-page">Back to Second</a></p>
-		</div>
-		<!-- /content -->
-
-	</div>
-	<!-- /page -->
+		<div data-role="footer">
+			<h4>Page Footer</h4>
+		</div><!-- /footer -->
+	</div><!-- /page -->
 </body>
 
 </html>
