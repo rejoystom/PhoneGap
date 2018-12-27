@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="css/jquery.mobile.min.css" />
 	<link rel="stylesheet" href="css/all.min.css" />
 	<link rel="stylesheet" href="css/style.css" />
+	<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" /> -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery.mobile.min.js"></script>
 
@@ -18,10 +19,46 @@
 			font-size: 10px;
 		}
 
-		ul {
-			padding: 0;
-			margin: 0;
-			list-style-type: none;
+		body {
+			overflow: hidden;
+		}
+
+		img {
+			width: 100%;
+		}
+
+		.slide-left {
+			position: relative;
+			animation: animateleft 0.5s
+		}
+
+		@keyframes animateleft {
+			from {
+				right: 50%;
+				opacity: 0.2;
+			}
+
+			to {
+				right: 0;
+				opacity: 1;
+			}
+		}
+
+		.slide-right {
+			position: relative;
+			animation: animateright 0.5s
+		}
+
+		@keyframes animateright {
+			from {
+				left: 50%;
+				opacity: 0.2;
+			}
+
+			to {
+				left: 0;
+				opacity: 1;
+			}
 		}
 	</style>
 </head>
@@ -29,26 +66,18 @@
 <body>
 	<div data-role="page" id="login">
 		<div data-role="main">
-			<ul id="list">
-				<li class="d-block">
-					<img src="res/images/img_1.jpg" style="width:100%;">
-				</li>
-				<li class="d-none">
-					<img src="res/images/img_2.png" style="width:100%;">
-				</li>
-				<li class="d-none">
-					<img src="res/images/img_3.jpg" style="width:100%;">
-				</li>
-				<li class="d-none">
-					<img src="res/images/img_4.jpg" style="width:100%;">
-				</li>
-			</ul>
-		</div>
-		<div class="slide-indicator">
-			<i class="fas fa-circle"></i>
-			<i class="far fa-circle"></i>
-			<i class="far fa-circle"></i>
-			<i class="far fa-circle"></i>
+			<div id="slides">
+				<img class="d-block" src="res/images/img_1.jpg" />
+				<img class="d-none" src="res/images/img_2.png" />
+				<img class="d-none" src="res/images/img_3.jpg" />
+				<img class="d-none" src="res/images/img_4.jpg" />
+			</div>
+			<div class="slide-indicator">
+				<i class="fas fa-circle"></i>
+				<i class="far fa-circle"></i>
+				<i class="far fa-circle"></i>
+				<i class="far fa-circle"></i>
+			</div>
 		</div>
 	</div>
 </body>
@@ -56,9 +85,9 @@
 <script>
 	$(function ()
 	{
-		$(document).on("swipeleft swiperight", "#list li", function (event)
+		$(document).on("swipeleft swiperight", "#slides", function (event)
 		{
-			var current = $('li.d-block');
+			var current = $('img.d-block');
 			var indicator = $('.slide-indicator .fas');
 			event.stopPropagation();
 			switch (event.type)
@@ -67,41 +96,51 @@
 					if ($(current).next().length > 0)
 					{
 						$(current).next().addClass('d-block');
+						$(current).next().addClass('slide-right');
 						$(current).next().removeClass('d-none');
 						$(indicator).next().addClass('fas');
 						$(indicator).next().removeClass('far');
+
+						$(current).addClass('d-none');
+						$(current).removeClass('d-block');
+						$(current).removeClass('slide-right');
+						$(indicator).addClass('far');
+						$(indicator).removeClass('fas');
 					}
-					else
-					{
-						$('#list li').first().addClass('d-block');
-						$('#list li').first().removeClass('d-none');
-						$('.slide-indicator i').first().addClass('fas');
-						$('.slide-indicator i').first().removeClass('far');
-					}
+					// else
+					// {
+					// 	$('#slides img').first().addClass('d-block');
+					// 	$('#slides img').first().removeClass('d-none');
+					// 	$('.slide-indicator i').first().addClass('fas');
+					// 	$('.slide-indicator i').first().removeClass('far');
+					// }
 					break;
 				case "swiperight":
 					if ($(current).prev().length > 0)
 					{
 						$(current).prev().addClass('d-block');
+						$(current).prev().addClass('slide-left');
 						$(current).prev().removeClass('d-none');
 						$(indicator).prev().addClass('fas');
 						$(indicator).prev().removeClass('far');
+
+						$(current).addClass('d-none');
+						$(current).removeClass('d-block');
+						$(current).removeClass('slide-left');
+						$(indicator).addClass('far');
+						$(indicator).removeClass('fas');
 					}
-					else
-					{
-						$('#list li').last().addClass('d-block');
-						$('#list li').last().removeClass('d-none');
-						$('.slide-indicator i').last().addClass('fas');
-						$('.slide-indicator i').last().removeClass('far');
-					}
+					// else
+					// {
+					// 	$('#slides img').last().addClass('d-block');
+					// 	$('#slides img').last().removeClass('d-none');
+					// 	$('.slide-indicator i').last().addClass('fas');
+					// 	$('.slide-indicator i').last().removeClass('far');
+					// }
 					break;
 				default:
 					break;
 			}
-			$(current).addClass('d-none');
-			$(current).removeClass('d-block');
-			$(indicator).addClass('far');
-			$(indicator).removeClass('fas');
 		});
 	});
 </script>
