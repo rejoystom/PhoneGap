@@ -13,13 +13,14 @@
 	<script src="js/jquery.mobile.min.js"></script>
 
 	<style>
-		.fas,
-		.far {
-			color: black;
+		.slide-indicator {
+			color: #2ad;
+			font-size: 10px;
 		}
 
 		ul {
 			padding: 0;
+			margin: 0;
 			list-style-type: none;
 		}
 	</style>
@@ -29,31 +30,26 @@
 	<div data-role="page" id="login">
 		<div data-role="main">
 			<ul id="list">
-				<li class="">
-					<img src="http://hdphonewallpapers.com/content/ncpI4YzlBSsjPbXyNfMlKeAnPNZ1FJrVWtVbfG6Gdwh5Nja14haPmf4IcC2p99g1.png"
-					 style="width:100%;">
+				<li class="d-block">
+					<img src="res/images/img_1.jpg" style="width:100%;">
 				</li>
 				<li class="d-none">
-					<img src="https://i.pinimg.com/originals/61/0f/01/610f01dba9e195b9fba10abec1b0fa88.jpg" style="width:100%;">
+					<img src="res/images/img_2.png" style="width:100%;">
 				</li>
 				<li class="d-none">
-					<img src="http://papers.co/wallpaper/papers.co-bb08-minimal-drawing-pink-illustration-art-33-iphone6-wallpaper.jpg"
-					 style="width:100%;">
+					<img src="res/images/img_3.jpg" style="width:100%;">
 				</li>
 				<li class="d-none">
-					<img src="https://i.pinimg.com/originals/91/58/d9/9158d9e934e18ab6d8ebf67d61233c37.jpg" style="width:100%;">
+					<img src="res/images/img_4.jpg" style="width:100%;">
 				</li>
 			</ul>
 		</div>
 		<div class="slide-indicator">
-			<span><i class="fas fa-circle"></i></span>
-			<span><i class="fas fa-circle"></i></span>
-			<span><i class="far fa-circle"></i></span>
-			<span><i class="far fa-circle"></i></span>
-			<span><i class="far fa-circle"></i></span>
+			<i class="fas fa-circle"></i>
+			<i class="far fa-circle"></i>
+			<i class="far fa-circle"></i>
+			<i class="far fa-circle"></i>
 		</div>
-		<a class="goto-prev" data-slide="prev" href="#tourCarousel" />
-		<a class="goto-next" data-slide="next" href="#tourCarousel" />
 	</div>
 </body>
 
@@ -62,7 +58,50 @@
 	{
 		$(document).on("swipeleft swiperight", "#list li", function (event)
 		{
-			console.log(event.type);
+			var current = $('li.d-block');
+			var indicator = $('.slide-indicator .fas');
+			event.stopPropagation();
+			switch (event.type)
+			{
+				case "swipeleft":
+					if ($(current).next().length > 0)
+					{
+						$(current).next().addClass('d-block');
+						$(current).next().removeClass('d-none');
+						$(indicator).next().addClass('fas');
+						$(indicator).next().removeClass('far');
+					}
+					else
+					{
+						$('#list li').first().addClass('d-block');
+						$('#list li').first().removeClass('d-none');
+						$('.slide-indicator i').first().addClass('fas');
+						$('.slide-indicator i').first().removeClass('far');
+					}
+					break;
+				case "swiperight":
+					if ($(current).prev().length > 0)
+					{
+						$(current).prev().addClass('d-block');
+						$(current).prev().removeClass('d-none');
+						$(indicator).prev().addClass('fas');
+						$(indicator).prev().removeClass('far');
+					}
+					else
+					{
+						$('#list li').last().addClass('d-block');
+						$('#list li').last().removeClass('d-none');
+						$('.slide-indicator i').last().addClass('fas');
+						$('.slide-indicator i').last().removeClass('far');
+					}
+					break;
+				default:
+					break;
+			}
+			$(current).addClass('d-none');
+			$(current).removeClass('d-block');
+			$(indicator).addClass('far');
+			$(indicator).removeClass('fas');
 		});
 	});
 </script>
