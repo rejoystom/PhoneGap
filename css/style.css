@@ -1,18 +1,55 @@
-.slide-indicator {
-	position:fixed;
-	bottom:20px;
-	position: fixed;
-	width:100%;
-	text-align: center;
-	font-size: 12px;
-}
+		.slide-indicator {
+			position: fixed;
+			bottom: 20px;
+			position: fixed;
+			width: 100%;
+			text-align: center;
+			color: #2ad;
+			font-size: 10px;
+			z-index: 5;
+		}
 
-.fa-circle {
-	text-shadow:none;
-	color:white;
-	margin:3px;
-}
+		.fa-circle {
+			text-shadow: none;
+			color: white;
+			margin: 3px;
+		}
 
-.d-none {
-	display: none;
-}
+		body {
+			overflow: hidden !important;
+		}
+
+		#slides img {
+			position: absolute;
+			width: 100%;
+		}
+
+		.slide-left {
+			position: absolute;
+			animation: animateleft 0.5s
+		}
+
+		@keyframes animateleft {
+			from {
+				right: 80%;
+			}
+
+			to {
+				right: 0;
+			}
+		}
+
+		.slide-right {
+			position: absolute;
+			animation: animateright 0.5s
+		}
+
+		@keyframes animateright {
+			from {
+				left: 80%;
+			}
+
+			to {
+				left: 0;
+			}
+		}
