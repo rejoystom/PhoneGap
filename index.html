@@ -101,11 +101,11 @@
 <script>
 	$(function ()
 	{
-		var current = $('.current');
-		var indicator = $('.slide-indicator .fas');
-
 		$(document).on("swipeleft", "#slides", function (event)
 		{
+			var current = $('.current');
+			var indicator = $('.slide-indicator .fas');
+
 			if ($(current).next().length > 0)
 			{
 				$(current).next().removeClass('queue');
@@ -121,6 +121,9 @@
 
 		$(document).on("swiperight", "#slides", function (event)
 		{
+			var current = $('.current');
+			var indicator = $('.slide-indicator .fas');
+
 			if ($(current).prev().length > 0)
 			{
 				$(current).prev().removeClass('queue');
@@ -134,58 +137,6 @@
 			}
 		});
 
-
-		// switch (event.type)
-		// {
-		// 	case "swipeleft":
-		// 		if ($(current).next().length > 0)
-		// 		{
-		// 			$(current).next().addClass('d-block');
-		// 			$(current).next().addClass('slide-right');
-		// 			$(current).next().removeClass('d-none');
-		// 			$(indicator).next().addClass('fas');
-		// 			$(indicator).next().removeClass('far');
-
-		// 			$(current).addClass('d-none');
-		// 			$(current).removeClass('d-block');
-		// 			$(current).removeClass('slide-right');
-		// 			$(indicator).addClass('far');
-		// 			$(indicator).removeClass('fas');
-		// 		}
-		// 		// else
-		// 		// {
-		// 		// 	$('#slides img').first().addClass('d-block');
-		// 		// 	$('#slides img').first().removeClass('d-none');
-		// 		// 	$('.slide-indicator i').first().addClass('fas');
-		// 		// 	$('.slide-indicator i').first().removeClass('far');
-		// 		// }
-		// 		break;
-		// 	case "swiperight":
-		// 		if ($(current).prev().length > 0)
-		// 		{
-		// 			$(current).prev().addClass('d-block');
-		// 			$(current).prev().addClass('slide-left');
-		// 			$(current).prev().removeClass('d-none');
-		// 			$(indicator).prev().addClass('fas');
-		// 			$(indicator).prev().removeClass('far');
-
-		// 			$(current).addClass('d-none');
-		// 			$(current).removeClass('d-block');
-		// 			$(current).removeClass('slide-left');
-		// 			$(indicator).addClass('far');
-		// 			$(indicator).removeClass('fas');
-		// 		}
-		// 		// else
-		// 		// {
-		// 		// 	$('#slides img').last().addClass('d-block');
-		// 		// 	$('#slides img').last().removeClass('d-none');
-		// 		// 	$('.slide-indicator i').last().addClass('fas');
-		// 		// 	$('.slide-indicator i').last().removeClass('far');
-		// 		// }
-		// 		break;
-		// 	default:
-		// 		break;
-		// }
 	});
 </script>
 
