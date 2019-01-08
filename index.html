@@ -17,7 +17,7 @@
 	<div data-role="page" id="login">
 		<div data-role="main">
 			<div id="slides">
-				<img src="res/images/img_1.jpg" style="z-index: 4;" class="current" />
+				<img src="res/images/img_1.jpg" style="z-index: 4;" />
 				<img src="res/images/img_2.png" style="z-index: 3;" />
 				<img src="res/images/img_3.jpg" style="z-index: 2;" />
 				<img src="res/images/img_4.jpg" style="z-index: 1;" />
@@ -37,7 +37,7 @@
 	{
 		$(document).on("swipeleft", "#slides", function (event)
 		{
-			var current = $('.current');
+			var current = $('img[style*="z-index: 4"]');
 			var indicator = $('.slide-indicator .fas');
 
 			if ($(current).next().length > 0)
@@ -52,9 +52,7 @@
 				$(current).prev().css('zIndex', 2);
 				$(current).css('zIndex', 3);
 				$(current).next().css('zIndex', 4);
-				$(current).next().addClass('current');
 				$(current).next().addClass('slide-right');
-				$(current).removeClass('current');
 
 				$(indicator).next().addClass('fas');
 				$(indicator).next().removeClass('far');
@@ -65,7 +63,7 @@
 
 		$(document).on("swiperight", "#slides", function (event)
 		{
-			var current = $('.current');
+			var current = $('img[style*="z-index: 4"]');
 			var indicator = $('.slide-indicator .fas');
 
 			if ($(current).prev().length > 0)
@@ -80,9 +78,7 @@
 				$(current).prev().css('zIndex', 4);
 				$(current).css('zIndex', 3);
 				$(current).next().css('zIndex', 2);
-				$(current).prev().addClass('current');
 				$(current).prev().addClass('slide-left');
-				$(current).removeClass('current');
 
 				$(indicator).prev().addClass('fas');
 				$(indicator).prev().removeClass('far');
