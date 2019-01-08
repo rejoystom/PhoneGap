@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+	<link rel="stylesheet" href="css/jquery.mobile.min.css" />
+	<link rel="stylesheet" href="css/all.min.css" />
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.mobile.min.js"></script>
+
+	<style>
+		.slide-indicator {
+			position: fixed;
+			bottom: 20px;
+			position: fixed;
+			width: 100%;
+			text-align: center;
+			color: #2ad;
+			font-size: 10px;
+			z-index: 5;
+		}
+
+		.fa-circle {
+			text-shadow: none;
+			color: white;
+			margin: 3px;
+		}
+
+		body {
+			overflow: hidden !important;
+		}
+
+		img {
+			position: absolute;
+			width: 100%;
+		}
+
+		.current {
+			z-index: 4;
+		}
+
+		.queue {
+			z-index: 1;
+		}
+	</style>
+</head>
+
+<body>
+	<div data-role="page" id="login">
+		<div data-role="main">
+			<div id="slides">
+				<img class="current" src="res/images/img_1.jpg" />
+				<img class="queue" src="res/images/img_2.png" />
+				<img class="queue" src="res/images/img_3.jpg" />
+				<img class="queue" src="res/images/img_4.jpg" />
+			</div>
+			<div class="slide-indicator">
+				<i class="fas fa-circle"></i>
+				<i class="far fa-circle"></i>
+				<i class="far fa-circle"></i>
+				<i class="far fa-circle"></i>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script>
+	$(function ()
+	{
+		$(document).on("swipeleft", "#slides", function (event)
+		{
+			var current = $('.current');
+			$(current).next().removeClass('queue');
+			$(current).next().addClass('current');
+			$(current).removeClass('current');
+			$(current).addClass('queue');
+		});
+
+		$(document).on("swiperight", "#slides", function (event)
+		{
+			var current = $('.current');
+			$(current).prev().removeClass('queue');
+			$(current).prev().addClass('current');
+			$(current).removeClass('current');
+			$(current).addClass('queue');
+		});
+	});
+</script>
+
+</html>
