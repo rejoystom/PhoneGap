@@ -26,7 +26,7 @@
 
 		.slide-left {
 			position: absolute;
-			animation: animateleft 0.5s
+			animation: animateleft 0.1s
 		}
 
 		@keyframes animateleft {
@@ -41,7 +41,7 @@
 
 		.slide-right {
 			position: absolute;
-			animation: animateright 0.5s
+			animation: animateright 0.1s
 		}
 
 		@keyframes animateright {
