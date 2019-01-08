@@ -34,7 +34,7 @@
 			overflow: hidden !important;
 		}
 
-		img {
+		#slides img {
 			position: absolute;
 			width: 100%;
 		}
@@ -83,10 +83,10 @@
 	<div data-role="page" id="login">
 		<div data-role="main">
 			<div id="slides">
-				<img class="current" src="res/images/img_1.jpg" />
-				<img class="queue" src="res/images/img_2.png" />
-				<img class="queue" src="res/images/img_3.jpg" />
-				<img class="queue" src="res/images/img_4.jpg" />
+				<img src="res/images/img_1.jpg" style="z-index: 4;" class="current" />
+				<img src="res/images/img_2.png" style="z-index: 3;" />
+				<img src="res/images/img_3.jpg" style="z-index: 2;" />
+				<img src="res/images/img_4.jpg" style="z-index: 1;" />
 			</div>
 			<div class="slide-indicator">
 				<i class="fas fa-circle"></i>
@@ -108,10 +108,18 @@
 
 			if ($(current).next().length > 0)
 			{
-				$(current).next().removeClass('queue');
+				$(current).prev().removeClass('slide-left');
+				$(current).prev().removeClass('slide-right');
+				$(current).next().removeClass('slide-left');
+				$(current).next().removeClass('slide-right');
+
+				$(current).prev().css('zIndex', 2);
+				$(current).css('zIndex', 3);
+				$(current).next().css('zIndex', 4);
 				$(current).next().addClass('current');
+				$(current).next().addClass('slide-right');
 				$(current).removeClass('current');
-				$(current).addClass('queue');
+
 				$(indicator).next().addClass('fas');
 				$(indicator).next().removeClass('far');
 				$(indicator).addClass('far');
@@ -126,10 +134,18 @@
 
 			if ($(current).prev().length > 0)
 			{
-				$(current).prev().removeClass('queue');
+				$(current).prev().removeClass('slide-left');
+				$(current).prev().removeClass('slide-right');
+				$(current).next().removeClass('slide-left');
+				$(current).next().removeClass('slide-right');
+
+				$(current).prev().css('zIndex', 4);
+				$(current).css('zIndex', 3);
+				$(current).next().css('zIndex', 2);
 				$(current).prev().addClass('current');
+				$(current).prev().addClass('slide-left');
 				$(current).removeClass('current');
-				$(current).addClass('queue');
+
 				$(indicator).prev().addClass('fas');
 				$(indicator).prev().removeClass('far');
 				$(indicator).addClass('far');
