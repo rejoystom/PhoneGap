@@ -6,42 +6,93 @@
 	<meta name="format-detection" content="telephone=no" />
 	<meta name="msapplication-tap-highlight" content="no" />
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
-	<link rel="stylesheet" href="css/jquery.mobile.min.css" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/all.min.css" />
 	<link rel="stylesheet" href="css/style.css" />
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery.mobile.min.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
 </head>
 
 <body>
-	<div data-role="page" id="login">
-		<div data-role="main">
-			<div id="slides">
-				<img src="res/images/img_1.jpg" style="z-index: 4;" />
-				<img src="res/images/img_2.png" style="z-index: 3;" />
-				<img src="res/images/img_3.jpg" style="z-index: 2;" />
-				<img src="res/images/img_4.jpg" style="z-index: 1;" />
-			</div>
-			<div class="slide-indicator">
-				<i class="fas fa-circle"></i>
-				<i class="far fa-circle"></i>
-				<i class="far fa-circle"></i>
-				<i class="far fa-circle"></i>
-			</div>
+	<div id="tour" class="d-none">
+		<div id="slides">
+			<img src="res/images/img_1.jpg" style="z-index: 4;" />
+			<img src="res/images/img_2.png" style="z-index: 3;" />
+			<img src="res/images/img_3.jpg" style="z-index: 2;" />
+			<img src="res/images/img_4.jpg" style="z-index: 1;" />
 		</div>
+		<div class="slide-indicator">
+			<i class="fas fa-circle"></i>
+			<i class="far fa-circle"></i>
+			<i class="far fa-circle"></i>
+			<i class="far fa-circle"></i>
+		</div>
+	</div>
+
+	<div id="login" class="d-none">
+		<div class="extra-gap">
+			<img src="./res/welome.png" width="100%" height="auto" />
+		</div>
+		<div class="extra-gap">
+			<p class="p-main">Welcome to Ecop</p>
+			<p class="p-sub">Please enter device SIM number and password</p>
+		</div>
+		<div class="input-field">
+			<button><i class="fa fa-mobile-alt icon"></i></button>
+			<input id="mobileNumber" class="custom-control" type="number" placeholder="Mobile Number">
+		</div>
+		<div class="input-field">
+			<button><i class="fa fa-key icon"></i></button>
+			<input id="keyInput" class="custom-control" type="password" placeholder="Password">
+		</div>
+		<div class="form-group">
+			<button id="signUpBtn" disabled="disabled" class="custom-button">Sign In</button>
+		</div>
+	</div>
+
+	<div id="dashboard" class="d-">
+		<div class="dbHeader">Ecop Security<span onclick="settings()"><i class="fas fa-ellipsis-v"></i></span></div>
+		<div class="dbResponse">Welcome back.</div>
+		<div class="dbControls">
+			<div onclick="activate()" class="card1">Activate</div><div onclick="deactivate()" class="card1">Deactivate</div>
+			<div onclick="removeNumber()" class="card1">Remove Number</div><div onclick="status()" class="card1">Status</div>
+		</div>
+	</div>
+
+	<div id="settings" class="d-none" onclick="closeSettings()">
+		<ul>
+			<li onclick="loadOption(1)">Accounts</li>
+			<li onclick="loadOption(2)">Guide</li>
+			<li onclick="loadOption(3)">Help & feedback</li>
+			<li onclick="loadOption(4)">Logout</li>
+		</ul>
+	</div>
+
+	<div id="success" class="d-none">
+		<div class="extra-gap">
+			<img src="./res/success.png" width="50%" height="auto" />
+		</div>
+		<div class="extra-gap">
+			<p class="p-title">Congratulation</p>
+			<p class="p-sub d-margin">Registration successful</p>
+		</div>
+		<div class="form-group">
+			<button id="okBtn" class="custom-button">Continue</button>
+		</div>
+	</div>
+
+	<div id="loading" class="d-none">
+		<img src="res/loading.svg" width="60%" height="auto" />
+		<p>Please wait...</p>
 	</div>
 </body>
 
 <script>
-	$(function ()
-	{
-		$(document).on("swipeleft", "#slides", function (event)
-		{
+	$(function () {
+		$(document).on("swipeleft", "#slides", function (event) {
 			var current = $('img[style*="z-index: 4"]');
 			var indicator = $('.slide-indicator .fas');
 
-			if ($(current).next().length > 0)
-			{
+			if ($(current).next().length > 0) {
 				$(current).prev().removeClass('slide-left');
 				$(current).prev().removeClass('slide-right');
 				$(current).removeClass('slide-left');
@@ -61,13 +112,11 @@
 			}
 		});
 
-		$(document).on("swiperight", "#slides", function (event)
-		{
+		$(document).on("swiperight", "#slides", function (event) {
 			var current = $('img[style*="z-index: 4"]');
 			var indicator = $('.slide-indicator .fas');
 
-			if ($(current).prev().length > 0)
-			{
+			if ($(current).prev().length > 0) {
 				$(current).prev().removeClass('slide-left');
 				$(current).prev().removeClass('slide-right');
 				$(current).removeClass('slide-left');
