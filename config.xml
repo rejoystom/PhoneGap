@@ -31,6 +31,7 @@
 
     <platform name="android"></platform>
 
+	<preference name="Orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="exit-on-suspend" value="true" />
     <preference name="backgroundColor" value="0xffffffff" />
