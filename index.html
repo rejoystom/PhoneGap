@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	<div id="tour" class="d-none">
+	<div id="tour" class="d-">
 		<div id="slides">
 			<img src="res/images/img_1.jpg" style="z-index: 4;" />
 			<img src="res/images/img_2.png" style="z-index: 3;" />
@@ -25,6 +25,10 @@
 			<i class="far fa-circle"></i>
 			<i class="far fa-circle"></i>
 			<i class="far fa-circle"></i>
+		</div>
+		<div class="slide-controls">
+			<i class="fas fa-arrow-left" onclick="slide('prev')"></i>
+			<i class="fas fa-arrow-right" onclick="slide('next')"></i>
 		</div>
 	</div>
 
@@ -49,7 +53,7 @@
 		</div>
 	</div>
 
-	<div id="dashboard" class="d-">
+	<div id="dashboard" class="d-none">
 		<div class="dbResponse">
 			<p>Requesting status, Please wait...</p>
 		</div>
@@ -62,7 +66,7 @@
 		<div class="dbHeader">Ecop Security<span onclick="settings()"><i class="fas fa-ellipsis-v"></i></span></div>
 	</div>
 
-	<div id="settings" class="d-" onclick="closeSettings()">
+	<div id="settings" class="d-none" onclick="closeSettings()">
 		<ul>
 			<li onclick="loadOption(1)">Accounts</li>
 			<li onclick="loadOption(2)">Guide</li>
@@ -92,53 +96,6 @@
 
 <script>
 	$(function () {
-		$(document).on("swipeleft", "#slides", function (event) {
-			var current = $('img[style*="z-index: 4"]');
-			var indicator = $('.slide-indicator .fas');
-
-			if ($(current).next().length > 0) {
-				$(current).prev().removeClass('slide-left');
-				$(current).prev().removeClass('slide-right');
-				$(current).removeClass('slide-left');
-				$(current).removeClass('slide-right');
-				$(current).next().removeClass('slide-left');
-				$(current).next().removeClass('slide-right');
-
-				$(current).prev().css('zIndex', 2);
-				$(current).css('zIndex', 3);
-				$(current).next().css('zIndex', 4);
-				$(current).next().addClass('slide-right');
-
-				$(indicator).next().addClass('fas');
-				$(indicator).next().removeClass('far');
-				$(indicator).addClass('far');
-				$(indicator).removeClass('fas');
-			}
-		});
-
-		$(document).on("swiperight", "#slides", function (event) {
-			var current = $('img[style*="z-index: 4"]');
-			var indicator = $('.slide-indicator .fas');
-
-			if ($(current).prev().length > 0) {
-				$(current).prev().removeClass('slide-left');
-				$(current).prev().removeClass('slide-right');
-				$(current).removeClass('slide-left');
-				$(current).removeClass('slide-right');
-				$(current).next().removeClass('slide-left');
-				$(current).next().removeClass('slide-right');
-
-				$(current).prev().css('zIndex', 4);
-				$(current).css('zIndex', 3);
-				$(current).next().css('zIndex', 2);
-				$(current).prev().addClass('slide-left');
-
-				$(indicator).prev().addClass('fas');
-				$(indicator).prev().removeClass('far');
-				$(indicator).addClass('far');
-				$(indicator).removeClass('fas');
-			}
-		});
 		changeDbHeight();
 	});
 
@@ -148,6 +105,59 @@
 		var controlsHeight = $('.dbControls').height() + 20;
 		var responseHeight = totalHeight - headerHeight - controlsHeight - 30;
 		$('.dbResponse').height(responseHeight);
+	}
+
+	function slide(dir) {
+		switch (dir) {
+			case 'next':
+				var current = $('img[style*="z-index: 4"]');
+				var indicator = $('.slide-indicator .fas');
+
+				if ($(current).next().length > 0) {
+					$(current).prev().removeClass('slide-left');
+					$(current).prev().removeClass('slide-right');
+					$(current).removeClass('slide-left');
+					$(current).removeClass('slide-right');
+					$(current).next().removeClass('slide-left');
+					$(current).next().removeClass('slide-right');
+
+					$(current).prev().css('zIndex', 2);
+					$(current).css('zIndex', 3);
+					$(current).next().css('zIndex', 4);
+					$(current).next().addClass('slide-right');
+
+					$(indicator).next().addClass('fas');
+					$(indicator).next().removeClass('far');
+					$(indicator).addClass('far');
+					$(indicator).removeClass('fas');
+				}
+				break;
+			case 'prev':
+				var current = $('img[style*="z-index: 4"]');
+				var indicator = $('.slide-indicator .fas');
+
+				if ($(current).prev().length > 0) {
+					$(current).prev().removeClass('slide-left');
+					$(current).prev().removeClass('slide-right');
+					$(current).removeClass('slide-left');
+					$(current).removeClass('slide-right');
+					$(current).next().removeClass('slide-left');
+					$(current).next().removeClass('slide-right');
+
+					$(current).prev().css('zIndex', 4);
+					$(current).css('zIndex', 3);
+					$(current).next().css('zIndex', 2);
+					$(current).prev().addClass('slide-left');
+
+					$(indicator).prev().addClass('fas');
+					$(indicator).prev().removeClass('far');
+					$(indicator).addClass('far');
+					$(indicator).removeClass('fas');
+				}
+				break;
+			default:
+				break;
+		}
 	}
 </script>
 
