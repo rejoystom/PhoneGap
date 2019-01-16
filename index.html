@@ -5,11 +5,12 @@
 	<meta charset="utf-8" />
 	<meta name="format-detection" content="telephone=no" />
 	<meta name="msapplication-tap-highlight" content="no" />
-	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, width=device-width, height=device-height" />
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/all.min.css" />
 	<link rel="stylesheet" href="css/style.css" />
 	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
 </head>
 
 <body>
@@ -53,6 +54,14 @@
 		</div>
 	</div>
 
+	<div id="remover" class="">
+		<div class="remover-pannel">
+			<div class="mob-num">+919747098229</div>
+			<i class="fas fa-trash-alt"></i>
+		</div>
+		<div class="Header">Ecop Security</div>
+	</div>
+
 	<div id="dashboard" class="d-none">
 		<div class="dbResponse">
 			<p>Requesting status, Please wait...</p>
@@ -63,7 +72,7 @@
 			<div onclick="removeNumber()" class="card1">Remove Number</div>
 			<div onclick="status()" class="card1">Status</div>
 		</div>
-		<div class="dbHeader">Ecop Security<span onclick="settings()"><i class="fas fa-ellipsis-v"></i></span></div>
+		<div class="Header">Ecop Security<span onclick="settings()"><i class="fas fa-ellipsis-v"></i></span></div>
 	</div>
 
 	<div id="settings" class="d-none" onclick="closeSettings()">
@@ -93,72 +102,5 @@
 		<p>Please wait...</p>
 	</div>
 </body>
-
-<script>
-	$(function () {
-		changeDbHeight();
-	});
-
-	function changeDbHeight() {
-		var totalHeight = $('#dashboard').height();
-		var headerHeight = $('.dbHeader').height() + 30;
-		var controlsHeight = $('.dbControls').height() + 20;
-		var responseHeight = totalHeight - headerHeight - controlsHeight - 30;
-		$('.dbResponse').height(responseHeight);
-	}
-
-	function slide(dir) {
-		switch (dir) {
-			case 'next':
-				var current = $('img[style*="z-index: 4"]');
-				var indicator = $('.slide-indicator .fas');
-
-				if ($(current).next().length > 0) {
-					$(current).prev().removeClass('slide-left');
-					$(current).prev().removeClass('slide-right');
-					$(current).removeClass('slide-left');
-					$(current).removeClass('slide-right');
-					$(current).next().removeClass('slide-left');
-					$(current).next().removeClass('slide-right');
-
-					$(current).prev().css('zIndex', 2);
-					$(current).css('zIndex', 3);
-					$(current).next().css('zIndex', 4);
-					$(current).next().addClass('slide-right');
-
-					$(indicator).next().addClass('fas');
-					$(indicator).next().removeClass('far');
-					$(indicator).addClass('far');
-					$(indicator).removeClass('fas');
-				}
-				break;
-			case 'prev':
-				var current = $('img[style*="z-index: 4"]');
-				var indicator = $('.slide-indicator .fas');
-
-				if ($(current).prev().length > 0) {
-					$(current).prev().removeClass('slide-left');
-					$(current).prev().removeClass('slide-right');
-					$(current).removeClass('slide-left');
-					$(current).removeClass('slide-right');
-					$(current).next().removeClass('slide-left');
-					$(current).next().removeClass('slide-right');
-
-					$(current).prev().css('zIndex', 4);
-					$(current).css('zIndex', 3);
-					$(current).next().css('zIndex', 2);
-					$(current).prev().addClass('slide-left');
-
-					$(indicator).prev().addClass('fas');
-					$(indicator).prev().removeClass('far');
-					$(indicator).addClass('far');
-					$(indicator).removeClass('fas');
-				}
-				break;
-			default:
-				break;
-		}
-	}
-</script>
 
 </html>
