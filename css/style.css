@@ -193,22 +193,33 @@ body {
 	top: 52px;
 	left: 0vw;
 	width: 100vw;
-	padding: 15px;
+}
+
+.remover-item {
+	display: inline-block;
+	width: 100vw;
+	padding: 20px 20px;
+	background-color: #fff;
+	border-bottom: rgba(0, 0, 0, 0.2) solid 1px;
 }
 
 .mob-num {
-	background-color: rgb(117, 220, 252);
-	padding: 10px;
-	margin-right: 10px;
-	border-radius: 15px 0px;
+	margin: auto 15px;
 	font-size: 16px;
 	font-weight: 600;
+	padding: 9px 0;
 	float: left;
+}
+
+.remove-btn {
+	margin: auto;
+	vertical-align: middle;
+	margin-right: 15px;
 }
 
 
 .remover-pannel i {
-	float: left;
+	float: right;
 	height: 40px;
 	width: 40px;
 	display: flex;
@@ -218,6 +229,15 @@ body {
 	color: white;
 	box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
 	background-color: red;
+}
+
+.remover-pannel i:active {
+	box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+	background-color: rgb(255, 62, 62);
+}
+
+#removeSaveBtn {
+	margin-top: 30px;
 }
 
 /*#endregion Remover*/
