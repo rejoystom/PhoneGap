@@ -156,3 +156,8 @@ function slide(dir) {
 function closeSettings() {
 	$('#settings').addClass('d-none');
 }
+
+function start() {
+	$('#tour').addClass('d-none');
+	$('#login').removeClass('d-none');
+}
