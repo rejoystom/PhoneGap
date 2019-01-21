@@ -103,7 +103,7 @@ function changeDbHeight() {
 function slide(dir) {
 	switch (dir) {
 		case 'next':
-			var current = $('img[style*="z-index: 4"]');
+			var current = $('div[style*="z-index: 4"]');
 			var indicator = $('.slide-indicator .fas');
 
 			if ($(current).next().length > 0) {
@@ -126,7 +126,7 @@ function slide(dir) {
 			}
 			break;
 		case 'prev':
-			var current = $('img[style*="z-index: 4"]');
+			var current = $('div[style*="z-index: 4"]');
 			var indicator = $('.slide-indicator .fas');
 
 			if ($(current).prev().length > 0) {

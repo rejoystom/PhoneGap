@@ -65,6 +65,36 @@ body {
 /*#endregion Global*/
 
 
+/*#region tourTemp*/
+
+#slides div {
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 100vw;
+	height: 100vh;
+}
+
+.div-one {
+	background-color: rgb(255, 0, 0);
+}
+
+.div-two {
+	background-color: rgb(60, 255, 0);
+}
+
+.div-three {
+	background-color: rgb(0, 195, 255);
+}
+
+.div-four {
+	background-color: rgb(255, 238, 0);
+}
+
+/*endregion tourTemp*/
+
+
 /*#region Slider*/
 
 #slides img {
