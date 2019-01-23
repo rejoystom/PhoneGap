@@ -26,7 +26,57 @@ $(function () {
 	} catch (error) {
 		alert(error);
 	}
+
+	$('#mobileNumber').keyup(function (e) {
+		validateCred();
+		if (e.which === 13) {
+			$('#keyInput').focus();
+		}
+	});
+
+	$('#keyInput').keyup(function (e) {
+		validateCred();
+		if (e.which === 13) {
+			$('#signUpBtn').focus();
+			$('#signUpBtn').click();
+		}
+	});
+
+	$('#signUpBtn').click(function () {
+		if (validateCred()) {
+			var formatedKey = "~*#" + keyIn.trim() + "#*~";
+
+			if (SMS) SMS.sendSMS(mobNo, formatedKey, function () {
+				$('#login').addClass('d-none');
+				$('#loading').removeClass('d-none');
+				storage.setItem('deviceNumber', mobNo);
+			}, function () {
+				alert("Error sending SMS, please check your balance or retry again.");
+			});
+
+			setTimeout(() => {
+				if (registeredFlag != 'true') {
+					$('#loading').addClass('d-none');
+					$('#registration').removeClass('d-none');
+				}
+			}, 30000);
+		} else {
+			$('#signUpBtn').prop('disabled', true);
+		}
+	});
+
 });
+
+function validateCred() {
+	var mobNo = $('#mobileNumber').val();
+	var keyIn = $('#keyInput').val();
+	if (mobNo != "" && keyIn != "") {
+		$('#signUpBtn').prop('disabled', false);
+		return true;
+	}
+	$('#signUpBtn').prop('disabled', true);
+	return false;
+}
 
 function initialize() {
 	try {
