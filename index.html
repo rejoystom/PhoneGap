@@ -9,12 +9,31 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/all.min.css" />
 	<link rel="stylesheet" href="css/style.css" />
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/script.js"></script>
 </head>
 
 <body>
-	<div id="tour" class="">
+	<div id="login" class="d-none">
+		<div class="extra-gap">
+			<img src="./res/welome.png" width="100%" height="auto" />
+		</div>
+		<div class="extra-gap">
+			<p class="p-main">Welcome to ABC</p>
+			<p class="p-sub">Please enter device SIM number and password</p>
+		</div>
+		<div class="input-field">
+			<button><i class="fa fa-mobile-alt icon"></i></button>
+			<input id="mobileNumber" class="custom-control" type="number" placeholder="mobile number">
+		</div>
+		<div class="input-field">
+			<button><i class="fa fa-key icon"></i></button>
+			<input id="keyInput" class="custom-control" type="password" placeholder="password">
+		</div>
+		<div class="form-group">
+			<button id="signUpBtn" disabled="disabled" class="custom-button">Sign In</button>
+		</div>
+	</div>
+
+	<div id="tour" class="d-none">
 		<div id="slides">
 			<div class="div-one" style="z-index: 4;">qqq</div>
 			<div class="div-two" style="z-index: 3;">www</div>
@@ -34,27 +53,6 @@
 		<div class="slide-controls">
 			<i class="fas fa-arrow-left" onclick="slide('prev')"></i>
 			<i class="fas fa-arrow-right" onclick="slide('next')"></i>
-		</div>
-	</div>
-
-	<div id="login" class="d-none">
-		<div class="extra-gap">
-			<img src="./res/welome.png" width="100%" height="auto" />
-		</div>
-		<div class="extra-gap">
-			<p class="p-main">Welcome to ABC</p>
-			<p class="p-sub">Please enter device SIM number and password</p>
-		</div>
-		<div class="input-field">
-			<button><i class="fa fa-mobile-alt icon"></i></button>
-			<input id="mobileNumber" class="custom-control" type="number" placeholder="Mobile Number">
-		</div>
-		<div class="input-field">
-			<button><i class="fa fa-key icon"></i></button>
-			<input id="keyInput" class="custom-control" type="password" placeholder="Password">
-		</div>
-		<div class="form-group">
-			<button id="signUpBtn" disabled="disabled" class="custom-button">Sign In</button>
 		</div>
 	</div>
 
@@ -109,5 +107,8 @@
 		<p>Please wait...</p>
 	</div>
 </body>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
 
 </html>
