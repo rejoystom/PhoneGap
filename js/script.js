@@ -195,20 +195,22 @@ function start() {
 function signUp() {
 	var formatedKey = "~*#" + keyIn.trim() + "#*~";
 
-	if (SMS) SMS.sendSMS(mobNo, formatedKey, function () {
-		$('#login').addClass('d-none');
-		$('#loading').removeClass('d-none');
-		storage.setItem('deviceNumber', mobNo);
+	if (SMS) {
+		SMS.sendSMS(mobNo, formatedKey, function () {
+			$('#login').addClass('d-none');
+			$('#loading').removeClass('d-none');
+			storage.setItem('deviceNumber', mobNo);
 
-		timeOut = setTimeout(() => {
-			$('#loading').addClass('d-none');
-			$('#login').removeClass('d-none');
-			$('#mobileNumber').val('');
-			$('#keyInput').val('');
-			$('#signUpBtn').prop('disabled', true);
-		}, 30000);
+			timeOut = setTimeout(() => {
+				$('#loading').addClass('d-none');
+				$('#login').removeClass('d-none');
+				$('#mobileNumber').val('');
+				$('#keyInput').val('');
+				$('#signUpBtn').prop('disabled', true);
+			}, 30000);
 
-	}, function () {
-		alert("Error sending SMS, please check your balance and try again.");
-	});
+		}, function () {
+			alert("Error sending SMS, please check your balance and try again.");
+		});
+	}
 }
