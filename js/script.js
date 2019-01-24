@@ -189,30 +189,26 @@ function start() {
 			$('#signUpBtn').click();
 		}
 	});
+}
 
-	$('#signUpBtn').click(function () {
-		if (validateCred()) {
-			var formatedKey = "~*#" + keyIn.trim() + "#*~";
 
-			if (SMS) SMS.sendSMS(mobNo, formatedKey, function () {
-				$('#login').addClass('d-none');
-				$('#loading').removeClass('d-none');
-				storage.setItem('deviceNumber', mobNo);
+function signUp() {
+	var formatedKey = "~*#" + keyIn.trim() + "#*~";
 
-				timeOut = setTimeout(() => {
-					$('#loading').addClass('d-none');
-					$('#login').removeClass('d-none');
-					$('#mobileNumber').val('');
-					$('#keyInput').val('');
-					$('#signUpBtn').prop('disabled', true);
-				}, 30000);
+	if (SMS) SMS.sendSMS(mobNo, formatedKey, function () {
+		$('#login').addClass('d-none');
+		$('#loading').removeClass('d-none');
+		storage.setItem('deviceNumber', mobNo);
 
-			}, function () {
-				alert("Error sending SMS, please check your balance and try again.");
-			});
-
-		} else {
+		timeOut = setTimeout(() => {
+			$('#loading').addClass('d-none');
+			$('#login').removeClass('d-none');
+			$('#mobileNumber').val('');
+			$('#keyInput').val('');
 			$('#signUpBtn').prop('disabled', true);
-		}
+		}, 30000);
+
+	}, function () {
+		alert("Error sending SMS, please check your balance and try again.");
 	});
 }
