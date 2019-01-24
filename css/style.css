@@ -314,6 +314,7 @@ body {
 
 .custom-control {
 	display: inline-block;
+	width: 75%;
 	color: #3e3e3ec2;
 	font-weight: 600;
 	padding: 10px 12px 8px 12px;

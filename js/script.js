@@ -12,7 +12,6 @@ var smsList = new Array;
 
 $(function () {
 	document.addEventListener('deviceready', initialize, false);
-	changeDbHeight();
 
 	try {
 		if (storage.getItem('registeredFlag') === null) {
@@ -23,6 +22,7 @@ $(function () {
 		} else if (storage.getItem('registeredFlag') == 'true') {
 			mobNo = storage.getItem('deviceNumber');
 			$('#dashboard').removeClass('d-none');
+			changeDbHeight();
 		}
 	} catch (error) {
 		alert(error);
