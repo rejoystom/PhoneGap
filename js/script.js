@@ -1,6 +1,7 @@
 var storage = window.localStorage;
 var mobNo = "";
 var keyIn = "";
+var timeOut = "";
 
 var delNumResponseFlag = false;
 var deactResponseFlag = false;
@@ -63,6 +64,7 @@ function initialize() {
 function commandParse(message) {
 	if (message.indexOf('00617574686f7269736564') > -1) //authorised
 	{
+		clearTimeout(timeOut);
 		$('#loading').addClass('d-none');
 		$('#success').removeClass('d-none');
 		storage.setItem('registeredFlag', 'true');
@@ -196,16 +198,19 @@ function start() {
 				$('#login').addClass('d-none');
 				$('#loading').removeClass('d-none');
 				storage.setItem('deviceNumber', mobNo);
+
+				timeOut = setTimeout(() => {
+					$('#loading').addClass('d-none');
+					$('#login').removeClass('d-none');
+					$('#mobileNumber').val('');
+					$('#keyInput').val('');
+					$('#signUpBtn').prop('disabled', true);
+				}, 30000);
+
 			}, function () {
 				alert("Error sending SMS, please check your balance and try again.");
 			});
 
-			setTimeout(() => {
-				if (registeredFlag != 'true') {
-					$('#loading').addClass('d-none');
-					$('#login').removeClass('d-none');
-				}
-			}, 30000);
 		} else {
 			$('#signUpBtn').prop('disabled', true);
 		}
